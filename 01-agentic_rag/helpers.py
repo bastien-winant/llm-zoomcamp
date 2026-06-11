@@ -65,12 +65,14 @@ class RAGBase:
 			{'role': 'user', 'content': prompt}
 		]
 
-		response = self.llm_client.responses.create(
+		response = self.llm_client.chat.completions.create(
 			model=self.model,
-			input=input_messages
+			messages=input_messages,
+			user="llm-zoomcamp",
+			stream=False
 		)
 
-		return response.output_text
+		return response.choices[0].message.content
 
 	def rag(self, query):
 		search_results = self.search(query)
