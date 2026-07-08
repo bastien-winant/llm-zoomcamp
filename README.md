@@ -1,1 +1,0 @@
-# LLM Zoomcamp 2026
