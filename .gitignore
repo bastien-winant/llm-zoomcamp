@@ -1,5 +1,15 @@
-# Byte-compiled / optimized / DLL files
+# Python-generated files
 __pycache__/
+*.py[oc]
+build/
+dist/
+wheels/
+*.egg-info
+
+# Virtual environments
+.venv
+
+# Byte-compiled / optimized / DLL files
 *.py[codz]
 *$py.class
 
@@ -8,9 +18,7 @@ __pycache__/
 
 # Distribution / packaging
 .Python
-build/
 develop-eggs/
-dist/
 downloads/
 eggs/
 .eggs/
@@ -19,7 +27,6 @@ lib64/
 parts/
 sdist/
 var/
-wheels/
 share/python-wheels/
 *.egg-info/
 .installed.cfg
@@ -152,7 +159,6 @@ activemq-data/
 # Environments
 .env
 .envrc
-.venv
 env/
 venv/
 ENV/
@@ -236,3 +242,6 @@ bench/bench
 deno.lock
 bun.lockb
 .DS_Store
+
+*.json
+*onnx
