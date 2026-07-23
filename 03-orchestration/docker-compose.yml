@@ -32,7 +32,6 @@ services:
       - /tmp/kestra-wd:/tmp/kestra-wd
       - ./flows:/docker_folder
     environment:
-      # SECRET_OPENAI_API_KEY: ${SECRET_OPENAI_API_KEY}
       KESTRA_CONFIGURATION: |
         datasources:
           postgres:
