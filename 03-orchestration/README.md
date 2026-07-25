@@ -2,7 +2,9 @@
 ### Generating worflows with AI
 Building LLM applications usually involves a lot of repeated boilerplate code. This is where an AI assistant can be helpful and speed up development.
 
-AI also helps avoid errors, correct syntax errors, and ensure best coding practices.
+AI also helps avoid errors, correct syntax errors, and ensure best coding practices. LLM-assisted coding often involves a process of refinement where the developer looks over the AI-generated code, spots potential mistakes or gaps, and crafts a new prompt asking the model to address the issues.
+
+The _5% rule_ refers to the notion that AI models, if prompted adequately, are generally able to generate 95% of a feature's code. The developer then fills the gaps appropriately to complete the program and achieve the desired functionality.
 
 ### Automating decisions with AI
 Inside a workflow, AI can automate complex decisions. Given some input data, AI's non-determinism allows it to adapt to the specificities of the provided context.
