@@ -14,3 +14,14 @@ Using RAG, we can ground AI responses in data and ensure the model step of our w
 But AI is usually only as useful as the context it is provided. Context engineering is the practice of providing enough background information for an LLM to generate accurate and complete outputs, while minimizing irrelevant information that may cause confusion and hallucinations on the part of the model.
 
 LLM models are only trained up to a certain point in time. Eventually, their built-in knowledge becomes out-of-date and potentially obsolete. This knowledge gap is usually bridged using a carefully cured context. Therefore, proper context engineering becomes key in ensuring the reliability of AI applications and maintaining trust.
+
+### Separating ingestion from querying in RAG
+At a high level, RAG is a technique for retrieving relevant information from an external data source, and passing it to an AI model to elicit grounded responses. This helps in solving the hallucination problem often encountered with AI by ensuring the model has access to accurate data at query time.
+
+RAG has 2 phases:
+1. an _ingestion_ stage on a cadence
+2. on demand _querying_
+
+In productionl, theses 2 phases are executed separately and independently. Scheduled data ingestion ensures that retrieval returns up-to-date information. In turn, the amount of data processing at query time is minimized.
+
+During ingestion, new documents are collected, embedded into numerical vectors, and saved in a data store. At query time, a search engine uses a vector algorithm to identify documents from the database that closely match the query to build a prompt context.
