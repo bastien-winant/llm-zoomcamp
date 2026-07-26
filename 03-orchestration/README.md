@@ -25,3 +25,10 @@ RAG has 2 phases:
 In productionl, theses 2 phases are executed separately and independently. Scheduled data ingestion ensures that retrieval returns up-to-date information. In turn, the amount of data processing at query time is minimized.
 
 During ingestion, new documents are collected, embedded into numerical vectors, and saved in a data store. At query time, a search engine uses a vector algorithm to identify documents from the database that closely match the query to build a prompt context.
+
+### Tools in RAG
+As a secondary method for improving LLM model responses, we can provide AI with tools that may be called upon to improve model responses. Most commonly, a _web search tool_ allows the LLM to perform a web search for additional information related to the user query.
+
+Tools are often easier to set up than a data ingestion/retrieval process, but will generally not have the same level of reliability.
+
+### Agentic workflows
