@@ -1,0 +1,18 @@
+id: hw_context_engineering
+namespace: zoomcamp
+
+tasks:
+  - id: download_csv
+    type: io.kestra.plugin.core.storage.Write
+    content: "vendor_id,pickup_datetime,dropoff_datetime,passenger_count\n1,2023-01-01 10:00:00,2023-01-01 10:15:00,1\n2,2023-01-01 11:00:00,2023-01-01 11:20:00,2"
+    extension: .csv
+
+  - id: load_to_bigquery
+    type: io.kestra.plugin.gcp.bigquery.Load
+    from: "{{ outputs.download_csv.uri }}"
+    destinationTable: "my_project.nyc_taxi.trips"
+    format: CSV
+    csvOptions:
+      skipLeadingRows: 1
+    writeDisposition: WRITE_APPEND
+    createDisposition: CREATE_IF_NEEDED
