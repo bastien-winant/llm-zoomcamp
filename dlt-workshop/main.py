@@ -1,6 +1,6 @@
 from dotenv import load_dotenv
 
-load_dotenv()
+load_dotenv(override=True)
 
 from agent import faq_agent, SearchDeps
 from ingest import build_index, load_faq_data
