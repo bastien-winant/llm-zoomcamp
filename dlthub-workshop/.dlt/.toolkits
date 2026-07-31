@@ -7,7 +7,7 @@ init:
   - rules
   - secrets
   - mcp
-  installed_at: '2026-07-31T09:44:30.624409+00:00'
+  installed_at: '2026-07-31T10:45:13.661889+00:00'
   agent: cursor
   files:
     .cursor/skills/dlthub-router/SKILL.md:
@@ -36,7 +36,7 @@ rest-api-pipeline:
   dependencies:
   - init
   workflow_entry_skill: find-source
-  installed_at: '2026-07-31T09:49:22.975512+00:00'
+  installed_at: '2026-07-31T10:45:37.890811+00:00'
   agent: cursor
   files:
     .cursor/skills/adjust-endpoint/SKILL.md:
