@@ -245,3 +245,6 @@ bun.lockb
 
 *.json
 *onnx
+
+src/
+*.csv
