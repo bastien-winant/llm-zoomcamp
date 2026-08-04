@@ -1,3 +1,7 @@
+from opentelemetry import trace
+from opentelemetry.sdk.trace import TracerProvider
+from opentelemetry.sdk.trace.export import ConsoleSpanExporter, SimpleSpanProcessor
+
 INSTRUCTIONS = '''
 Your task is to answer questions from the course participants
 based on the provided context.
@@ -67,3 +71,31 @@ class RAGBase:
 		prompt = self.build_prompt(query, search_results)
 		response = self.llm(prompt)
 		return response.output_text
+
+
+class RAGTraced(RAGBase):
+	def __init__(self, *args, **kwargs):
+		super().__init__(*args, **kwargs)
+
+		provider = TracerProvider()
+		provider.add_span_processor(
+			SimpleSpanProcessor(ConsoleSpanExporter())
+		)
+		trace.set_tracer_provider(provider)
+
+		self.tracer = trace.get_tracer("llm-zoomcamp")
+
+	def traced_search(self, query, num_results=5):
+		with self.tracer.start_as_current_span("search") as span:
+			return self.search(query=query, num_results=num_results)
+
+	def traced_llm(self, prompt):
+		with self.tracer.start_as_current_span("llm") as span:
+			return self.llm(prompt=prompt)
+
+	def traced_rag(self, query):
+		with self.tracer.start_as_current_span("rag") as span:
+			search_results = self.traced_search(query)
+			prompt = self.build_prompt(query, search_results)
+			response = self.traced_llm(prompt)
+			return response.output_text
