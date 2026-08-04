@@ -11,17 +11,17 @@ from minsearch import Index
 from rag_helper import RAGBase
 
 from dotenv import load_dotenv
-load_dotenv()
+load_dotenv(override=True)
 
 COMMIT = "8c1834d"
 
 # --- Load the course lessons (same as HW1, HW2, HW4) ---
 reader = GithubRepositoryDataReader(
-    repo_owner="DataTalksClub",
-    repo_name="llm-zoomcamp",
-    commit_id=COMMIT,
-    allowed_extensions={"md"},
-    filename_filter=lambda path: "/lessons/" in path,
+	repo_owner="DataTalksClub",
+	repo_name="llm-zoomcamp",
+	commit_id=COMMIT,
+	allowed_extensions={"md"},
+	filename_filter=lambda path: "/lessons/" in path,
 )
 documents = [file.parse() for file in reader.read()]
 
@@ -32,6 +32,6 @@ client = OpenAI()
 rag = RAGBase(index=index, llm_client=client)
 
 if __name__ == "__main__":
-    query = "How does the agentic loop keep calling the model until it stops?"
-    answer = rag.rag(query)
-    print(answer)
+	query = "How does the agentic loop keep calling the model until it stops?"
+	answer = rag.rag(query)
+	print(answer)
