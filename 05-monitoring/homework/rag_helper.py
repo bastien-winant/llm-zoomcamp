@@ -2,6 +2,8 @@ from opentelemetry import trace
 from opentelemetry.sdk.trace import TracerProvider
 from opentelemetry.sdk.trace.export import ConsoleSpanExporter, SimpleSpanProcessor
 
+from metrics import calculate_cost
+
 INSTRUCTIONS = '''
 Your task is to answer questions from the course participants
 based on the provided context.
@@ -91,7 +93,14 @@ class RAGTraced(RAGBase):
 
 	def traced_llm(self, prompt):
 		with self.tracer.start_as_current_span("llm") as span:
-			return self.llm(prompt=prompt)
+			response = self.llm(prompt=prompt)
+			usage = response.usage
+
+			span.set_attribute("input_tokens", usage.input_tokens)
+			span.set_attribute("output_tokens", usage.output_tokens)
+			span.set_attribute("cost", calculate_cost(usage=usage))
+
+			return response
 
 	def traced_rag(self, query):
 		with self.tracer.start_as_current_span("rag") as span:

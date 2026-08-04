@@ -1,6 +1,3 @@
-from opentelemetry import trace
-from opentelemetry.sdk.trace import TracerProvider
-from opentelemetry.sdk.trace.export import ConsoleSpanExporter, SimpleSpanProcessor
 from rag_helper import RAGTraced
 
 from dotenv import load_dotenv
